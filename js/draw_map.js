@@ -25,7 +25,8 @@ function initialize() {
         var marker = layer.selectAll("svg")
             .data(d3.values(data))
             .each(transform) // update existing markers
-          .enter().append("svg:svg")
+            .enter()
+            .append("svg:svg")
             .each(transform)
             .attr("class", "marker");
 
@@ -43,7 +44,7 @@ function initialize() {
             .text(function(d) { return d["head_latitude"]; });
 
         function transform(d) {
-          console.log(d);
+          console.log(d["head_latitude"] + ", " + d["head_longitude"]);
           d = new google.maps.LatLng(d["head_latitude"], d["head_longitude"]);
           d = projection.fromLatLngToDivPixel(d);
           return d3.select(this)

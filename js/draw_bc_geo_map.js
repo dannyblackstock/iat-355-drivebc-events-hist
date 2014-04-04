@@ -12,6 +12,13 @@ d3.json("bc_districts.geojson", function(error, json) {
     .attr("width", width)
     .attr("height", height);
 
+  var projection = d3.geo.mercator();
+    // .scale([1000]);
+    // .translate([width, height]);
+
+  var path = d3.geo.path()
+     .projection(projection);
+
   // create a path for each feature
   svg.selectAll("path")
     .data(json.features)
@@ -19,7 +26,4 @@ d3.json("bc_districts.geojson", function(error, json) {
     .append("path")
     .attr("d", path);
 
-  // var projection = d3.geo.mercator()
-  //   .scale(1)
-  //   .translate([width / 2, height / 2]);
 });

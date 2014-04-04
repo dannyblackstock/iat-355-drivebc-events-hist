@@ -4,16 +4,35 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
+      body { height: 100%; margin: 0; padding: 0; font: 10px sans-serif }
       #map-canvas { height: 500px }
+      #histogram-canvas { }
+
+      .bar rect {
+        fill: steelblue;
+        shape-rendering: crispEdges;
+      }
+
+      .bar text {
+        fill: #fff;
+      }
+
+      .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
     </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <!-- Google Maps is using Danny's API key. -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0naflfoGrRdLeyRnCeKQiZODwMkrDAwQ&sensor=false"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0naflfoGrRdLeyRnCeKQiZODwMkrDAwQ&sensor=false"></script>-->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/load_csv.js"></script>
-    <script type="text/javascript" src="js/draw_map.js"></script>
+    <!--<script type="text/javascript" src="js/draw_map.js"></script>-->
   </head>
   <body>
-    <div id="map-canvas"/>
+    <div id="map-canvas"></div>
+    <div id="histogram-canvas"></div>
   </body>
 </html>

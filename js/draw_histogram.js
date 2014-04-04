@@ -19,7 +19,7 @@ function draw_histogram(dataset) {
     return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1]/6)*10, 10));
   }   
 
-  console.log(values); // index : time number
+  // console.log(values); // index : time number
 
   // A formatter for counts.
   var formatCount = d3.format(",.0f");

@@ -25,6 +25,7 @@
 
     </style>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
     <!-- Google Maps is using Danny's API key. -->
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0naflfoGrRdLeyRnCeKQiZODwMkrDAwQ&sensor=false"></script>-->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -33,6 +34,9 @@
   </head>
   <body>
     <div id="map-canvas"></div>
-    <div id="histogram-canvas"></div>
+    <div id="histogram-canvas">Occurrences of Traffic Events by 
+      <select id="select-timescale"></select>, filtered(?) by
+      <select id="select-category"></select> 
+    </div>
   </body>
 </html>

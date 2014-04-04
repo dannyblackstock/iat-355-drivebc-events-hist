@@ -4,22 +4,45 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
+      body { height: 100%; margin: 0; padding: 0; font: 10px sans-serif }
       #map-canvas { height: 500px }
       .route{
         stroke-width:2px;
         stroke: #ff0000;
       }
+      #histogram-canvas { }
+
+      .bar rect {
+        fill: steelblue;
+        shape-rendering: crispEdges;
+      }
+
+      .bar text {
+        fill: #fff;
+      }
+
+      .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
     </style>
-    <!-- Google Maps is using Danny's API key. -->
+        <!-- Google Maps is using Danny's API key. -->
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0naflfoGrRdLeyRnCeKQiZODwMkrDAwQ&sensor=false"></script>-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <!--<script type="text/javascript" src="js/load_csv.js"></script>
-    <script type="text/javascript" src="js/draw_map.js"></script>-->
     <script type="text/javascript" src="js/draw_bc_geo_map.js"></script>
+    <script type="text/javascript" src="js/load_csv.js"></script>
   </head>
   <body>
     <!-- <div id="map-canvas"/> -->
     <div id="map" style="width:500px;"></div>
+    <div id="map-canvas"></div>
+    <div id="histogram-canvas">Occurrences of Traffic Events by
+      <select id="select-timescale"></select>, filtered(?) by
+      <select id="select-category"></select>
+    </div>
   </body>
 </html>

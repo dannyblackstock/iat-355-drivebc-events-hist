@@ -2,7 +2,7 @@
 var path = d3.geo.path();
 
 // load bc map GeoJSON file
-d3.json("bc_districts.geojson", function(error, json) {
+d3.json("bc_districts_danny_min.json", function(error, json) {
   console.log(json);
 
   var width = 1160,
@@ -12,9 +12,10 @@ d3.json("bc_districts.geojson", function(error, json) {
     .attr("width", width)
     .attr("height", height);
 
-  var projection = d3.geo.mercator();
-    // .scale([1000]);
-    // .translate([width, height]);
+  var projection = d3.geo.mercator()
+    .scale((width + 12000) / 2 / Math.PI)
+    .translate([width + 8000/ 2, height + 3250 / 2])
+    .precision(0.1);
 
   var path = d3.geo.path()
      .projection(projection);

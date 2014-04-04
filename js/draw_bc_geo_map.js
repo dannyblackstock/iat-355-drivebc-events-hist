@@ -2,7 +2,7 @@
 var path = d3.geo.path();
 
 // load bc map GeoJSON file
-d3.json("bc_districts_min.min.geojson", function(error, json) {
+d3.json("bc_districts.geojson", function(error, json) {
   console.log(json);
 
   var width = 1160,

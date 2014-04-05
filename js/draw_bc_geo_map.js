@@ -31,11 +31,11 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
       .enter()
       .append("path")
       .attr("d", path)
-      .classed("region", true)
-      .on("mouseover", function(d) {
+      .attr("class", "region")
+      .on("mousemove", function(d) {
         //show tooltip at center
-        var xPosition = path.centroid(d)[0];
-        var yPosition = path.centroid(d)[1];
+        var xPosition = d3.event.pageX;
+        var yPosition = d3.event.pageY;
 
         var tooltipString = d["properties"]["NAME_2"];
 
@@ -51,15 +51,19 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
       .on("mouseout", function() {
         //Hide the tooltip
         d3.select("#tooltip").classed("hidden", true);
-      });
-      // .on("click", clicked);
+      })
+      .on("click", clicked);
 
     // draw affected routes
-    svg.selectAll("line")
+    // append route lines div to the group so it can be scaled too
+    g.append("g")
+      .attr("id", "routes")
+      .classed("hidden", true)
+      .selectAll("line")
       .data(data)
       .enter()
       .append("line")
-      .classed("route", true)
+      .attr("class", "route")
       .attr("x1", function(d) {
         return projection([d["head_longitude"], d["head_latitude"]])[0];
       })
@@ -72,10 +76,10 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
       .attr("y2", function(d) {
         return projection([d["tail_longitude"], d["tail_latitude"]])[1];
       })
-      .on("mouseover", function(d) {
+      .on("mousemove", function(d) {
         //Get this bar's x/y values, then augment for the tooltip
-        var xPosition = d3.mouse(this)[0];
-        var yPosition = d3.mouse(this)[1];
+        var xPosition = d3.event.pageX;
+        var yPosition = d3.event.pageY;
         // console.log(d);
 
         var tooltipString = "<p><b>District:</b> " + d["district"] + "</p>" +
@@ -98,6 +102,7 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
       });
     });
 });
+
 function clicked(d) {
   var x, y, k;
 
@@ -116,6 +121,10 @@ function clicked(d) {
 
   g.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
+
+      // show the routes when zoomed in (centered on a region)
+  g.select("#routes")
+    .classed("hidden", !centered);
 
   g.transition()
       .duration(750)

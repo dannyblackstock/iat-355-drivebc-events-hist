@@ -11,10 +11,23 @@ body {
 }
 
 .route{
-  stroke-width:2px;
+  stroke-width: 2px;
   stroke: #ff0000;
 }
 
+.route:hover {
+  stroke-width:4px;
+  stroke: #ffffff;
+}
+.region {
+  fill: #77aaff;
+  stroke: #000000;
+}
+
+.region:hover {
+  fill: #BAD4FF;
+  cursor:pointer;
+}
 
 .bar rect {
   fill: steelblue;
@@ -56,7 +69,7 @@ body {
 }
 
 #tooltip.hidden {
-  display: none;
+  opacity: 0;
 }
 
 #tooltip p {

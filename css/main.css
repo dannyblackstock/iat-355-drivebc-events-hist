@@ -1,0 +1,67 @@
+html {
+  height: 100%
+}
+
+body {
+  height: 100%; margin: 0; padding: 0; font: 10px sans-serif
+}
+
+#map-canvas {
+  height: 500px
+}
+
+.route{
+  stroke-width:2px;
+  stroke: #ff0000;
+}
+
+
+.bar rect {
+  fill: steelblue;
+  shape-rendering: crispEdges;
+}
+
+.bar text {
+  fill: #fff;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#tooltip {
+  position: absolute;
+  height: auto;
+  padding: 5px;
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  text-align: left;
+  pointer-events: none;
+  opacity:1;
+  transition: opacity 0.2s ease;
+}
+#tooltip:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 5px 5px 0;
+  border-color: transparent #000000;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -5px;
+  top: 0;
+}
+
+#tooltip.hidden {
+  display: none;
+}
+
+#tooltip p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}

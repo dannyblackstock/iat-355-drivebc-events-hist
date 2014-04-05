@@ -1,5 +1,5 @@
 var width = 1160,
-  height = 1160;
+  height = 600;
 
 d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
 
@@ -7,13 +7,13 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
   d3.json("bc_districts_danny_min.json", function(error, json) {
     console.log(json);
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#map-svg").append("svg")
       .attr("width", width)
       .attr("height", height);
 
     var projection = d3.geo.mercator()
-      .scale((width + 5420) / Math.PI)
-      .translate([width + 4000, height + 1625])
+      .scale((width + 4000) / Math.PI)
+      .translate([width + 3000, height + 1575])
       .precision(0.1);
 
     var path = d3.geo.path()
@@ -31,7 +31,7 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
     for(var i=0, len=data.length-1; i<len; i++){
     // (note: loop until length - 1 since we're getting the next
     //  item with i+1)
-        routes=[]
+        routes=[];
         routes.push({
             type: "LineString",
             coordinates: [

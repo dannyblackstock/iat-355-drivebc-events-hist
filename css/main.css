@@ -45,6 +45,11 @@ body {
   shape-rendering: crispEdges;
 }
 
+.bar rect:hover {
+  fill: lightblue;
+  cursor: pointer;
+}
+
 .bar text {
   fill: #fff;
 }

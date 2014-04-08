@@ -17,7 +17,7 @@ var svg = d3.select("#map-svg").append("svg")
 var g = svg.append("g");
 
 // using first 1000 rows for testing
-d3.csv("drivebc_events_hist_2012_1000.csv", function (data) {
+d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
 
   // load bc map GeoJSON file
   d3.json("bc_districts_danny_min.json", function(error, json) {

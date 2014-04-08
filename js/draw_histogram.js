@@ -122,7 +122,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
             else {
               return false;
             }
-          }).style({'stroke': 'blue', 'stroke-width': 3});
+          }).style({'stroke': 'blue', 'stroke-width': 2});
         })
         .on("mouseout", function() {
           d3.selectAll("#routes line").style({'stroke': null, 'stroke-width': null});

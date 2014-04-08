@@ -120,7 +120,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
         var routeLines = d3.selectAll("#routes line");
         routeLines.filter(function(d) {
           if (d["severity"]=="Major") {
-            console.log(d["severity"]);
+            // console.log(d["severity"]);
             return false;
           }
           else {

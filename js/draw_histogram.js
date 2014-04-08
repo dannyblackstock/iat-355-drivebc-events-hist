@@ -20,7 +20,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
   d3.select("#select-category-values").on("change", function() {
     cleanUp();
     draw_histogram($("#select-timescale").val(), $("#select-category").val(), $(this).val());
-    console.log($(this).val());
+    // console.log($(this).val());
   });
 
   draw_histogram("Time of day", "All events");

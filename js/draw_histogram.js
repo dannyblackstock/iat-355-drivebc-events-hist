@@ -20,6 +20,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
   d3.select("#select-category-values").on("change", function() {
     cleanUp();
     draw_histogram($("#select-timescale").val(), $("#select-category").val(), $(this).val());
+    console.log($(this).val());
   });
 
   draw_histogram("Time of day", "All events");
@@ -30,6 +31,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
     var values = []; // values to be put into bins
     var xRange, yRange;
 
+    // console.log(category);
     // Adds only what is in the category to the data.
     switch (category) {
       case "All events":
@@ -49,7 +51,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
     if (narrowCat) { // a particular narrowed filter is selected
       values = [];
       for (var i = 0; i < dataset.length; i++) {
-        if ($.inArray(dataset[i][category], narrowCat)) {
+        if (!$.inArray(dataset[i][category], narrowCat)) {
           values.push(setTimescale(i, timescale));
         }
       }

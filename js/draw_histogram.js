@@ -51,8 +51,10 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
     if (narrowCat) { // a particular narrowed filter is selected
       values = [];
       for (var i = 0; i < dataset.length; i++) {
-        if (!$.inArray(dataset[i][category], narrowCat)) {
-          values.push(setTimescale(i, timescale));
+        for (var j = 0; j < narrowCat.length; j++) {
+          if (dataset[i][category] == narrowCat[j]) {//(!$.inArray(dataset[i][category], narrowCat[j])) {
+            values.push(setTimescale(i, timescale));
+          }
         }
       }
     }

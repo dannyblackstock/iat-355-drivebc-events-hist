@@ -45,9 +45,14 @@ body {
   fill: #bbb;
 }
 .bar rect {
-  fill: steelblue;
+  fill: #333;
   shape-rendering: crispEdges;
 }
+.bar rect:hover {
+  fill: #888;
+  cursor: pointer;
+}
+
 
 .bar text {
   fill: #fff;

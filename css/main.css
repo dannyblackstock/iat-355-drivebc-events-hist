@@ -19,13 +19,14 @@ body {
 }
 
 .route{
-  stroke-width: 2px;
+  stroke-width: 1px;
   stroke: #ff0000;
 }
 
 .route:hover {
-  stroke: #ffffff;
+  stroke: #ffffff !important; /* ew */
 }
+
 .region {
   fill: #77aaff;
   stroke: #000000;

@@ -21,7 +21,7 @@ d3.csv("drivebc_events_hist_2012_1000.csv", function (data) {
 
   // load bc map GeoJSON file
   d3.json("bc_districts_danny_min.json", function(error, json) {
-    console.log(json);
+    // console.log(json);
 
     // create a path for each feature
     g.append("g")
@@ -75,6 +75,9 @@ d3.csv("drivebc_events_hist_2012_1000.csv", function (data) {
       })
       .attr("y2", function(d) {
         return projection([d["tail_longitude"], d["tail_latitude"]])[1];
+      })
+      .attr("localupdatetime", function(d) {
+        return d["localupdatetime"];
       })
       .on("mousemove", function(d) {
         //Get this bar's x/y values, then augment for the tooltip

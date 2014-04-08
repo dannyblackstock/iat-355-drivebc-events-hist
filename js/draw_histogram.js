@@ -11,7 +11,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  
+
   var timescaleOptions = ["Time of day", "Day of week", "Monthly"],
       categoryOptions = ["All events", "type", "trafficpattern", "district"];
 
@@ -23,9 +23,9 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
   });
 
   draw_histogram("Time of day", "All events");
-  
 
-  function draw_histogram(timescale, category, narrowCat) { 
+
+  function draw_histogram(timescale, category, narrowCat) {
     // http://bl.ocks.org/mbostock/3048450
     var values = []; // values to be put into bins
     var xRange, yRange;
@@ -88,7 +88,38 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
     bar.append("rect")
         .attr("x", 1)
         .attr("width", x(data[0].dx) - 1)
-        .attr("height", function(d) { return height - y(d.y); });
+        .attr("height", function(d) { return height - y(d.y); })
+        .on("mouseover", function(d) {
+
+          // select lines where time attribute matches
+          //change stroke
+          var routeLines = d3.selectAll("#routes line");
+          var timescale = $("#select-timescale").val();
+          var matchTime = d[0];
+
+          routeLines.filter(function(d) {
+            var routeLinesTime="";
+            if (timescale === "Day of week") {
+              routeLinesTime = new Date(d["localupdatetime"]).getDay();
+            }
+            else if (timescale === "Monthly") {
+              routeLinesTime = new Date(d["localupdatetime"]).getMonth();
+            }
+            else if (timescale === "Time of day") {
+              routeLinesTime = new Date(d["localupdatetime"]).getHours();
+            }
+            if (matchTime === routeLinesTime) {
+              console.log(matchTime + ", " + routeLinesTime);
+              return true;
+            }
+            else {
+              return false;
+            }
+          }).style({'stroke': 'white', 'stroke-width': 3});
+        })
+        .on("mouseout", function() {
+          d3.selectAll("#routes line").style({'stroke': 'red', 'stroke-width': 1});
+        });
 
     bar.append("text")
         .attr("dy", ".75em")
@@ -158,12 +189,12 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
         multiSelect.selectAll("option").property('selected', true);
 
         cleanUp();
+              // console.log("You selected: " + this.value);
         draw_histogram($("#select-timescale").val(), this.value);
       } else if (id == "#select-timescale") {
         cleanUp();
         draw_histogram(this.value, $("#select-category").val());
       }
-      // console.log("You selected: " + this.value);
     });
   }
 
@@ -175,12 +206,12 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
     }
     uniques = uniques.filter(function(elem, pos, self) { // http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
       return self.indexOf(elem) == pos;
-    })
+    });
 
     return uniques.sort(); // get unique attribute values (for filters)
   }
 
-  
+
   function cleanUp() {
     svg.selectAll(".bar").remove();
     svg.selectAll(".x.axis").remove();

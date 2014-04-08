@@ -3,12 +3,14 @@ html {
 }
 
 body {
-  height: 100%; margin: 0; padding: 0; font: 10px sans-serif
+  height: 100%; margin: 0; padding: 0; font: 12px sans-serif
 }
 
 #map-svg {
   border: 1px solid #ccc;
   float:left;
+  clear: both;
+  margin: 0 10px 0 0;
 }
 
 #histogram-canvas-svg {

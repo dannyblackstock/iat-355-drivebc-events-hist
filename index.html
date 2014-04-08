@@ -11,20 +11,21 @@
   <div id="tooltip" class="hidden">
     <p><span id="tooltip-value"></span></p>
   </div>
-  <div id="map-svg">
-    <label for="show-severe-only">Show severe only</label>
+  <label for="show-severe-only" style="float:left">Show severe only
     <input id="show-severe-only" type="checkbox">
+  </label>
+  <div id="map-svg">
   </div>
   <div id="histogram-canvas">
   </div>
   <div id="controls">
+    <div id="total">
+      Total: <span id="total-value"></span>
+    </div>
     <label>Time scale: </label><select id="select-timescale"></select><br>
     <label>Filter by: <select id="select-category"></select></label><br>
     <label>Narrow the filter: </label><br>
     <select id="select-category-values" multiple size="8"></select>
-    <div id="total">
-      Total: <span id="total-value"></span>
-    </div>
   </div>
   <!-- Move scripts so they run when document is loaded -->
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>

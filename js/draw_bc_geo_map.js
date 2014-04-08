@@ -94,7 +94,9 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
         var tooltipString = "<p><b>District:</b> " + d["district"] + "</p>" +
              "<p><b>Severity:</b> " + d["severity"] + "</p>"  +
               "<p><b>Cause:</b> " + d["cause"] + "</p>" +
-              "<p><b>Date:</b> " + d["localupdatetime"] + "</p>";
+              "<p><b>Date:</b> " + d["localupdatetime"] + "</p>" +
+              "<p><b>Message:</b> " + d["advisorymessage"] + "</p>" +
+              "<p><b>State:</b> " + d["state"] + "</p>";
 
         //Update the tooltip position and value
         d3.select("#tooltip")

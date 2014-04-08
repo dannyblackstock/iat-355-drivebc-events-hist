@@ -82,6 +82,7 @@ body {
   position: absolute;
   height: auto;
   padding: 5px;
+  max-width: 200px;
   background-color: rgba(0,0,0,0.9);
   color: white;
   text-align: left;
@@ -89,6 +90,7 @@ body {
   opacity:1;
   transition: opacity 0.2s ease;
 }
+
 #tooltip:after {
   content: '';
   position: absolute;
@@ -109,6 +111,6 @@ body {
 #tooltip p {
   margin: 0;
   font-family: sans-serif;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 12px;
+  /*line-height: 20px;*/
 }

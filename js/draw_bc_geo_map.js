@@ -63,7 +63,13 @@ d3.csv("drivebc_events_hist_2012_1000.csv", function (data) {
       .data(data)
       .enter()
       .append("line")
-      .attr("class", "route")
+      .attr("class", function(d) {
+        var rString = "route";
+        if (d["severity"] == "Major") {
+          rString = rString + " major";
+        }
+        return rString;
+      })
       .attr("x1", function(d) {
         return projection([d["head_longitude"], d["head_latitude"]])[0];
       })

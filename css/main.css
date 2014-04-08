@@ -20,25 +20,29 @@ body {
 
 .route{
   stroke-width: 1px;
-  stroke: #ff0000;
+  stroke: #0b0;
+}
+
+.route.major {
+  stroke: #f00;
 }
 
 .route:hover {
-  stroke: #ffffff !important; /* ew */
+  stroke: #00f !important; /* ew */
 }
 
 .region {
-  fill: #77aaff;
-  stroke: #000000;
+  fill: #ddd;
+  stroke: #444;
 }
 
 .region:hover {
-  fill: #BAD4FF;
+  fill: #fff;
   cursor:pointer;
 }
 
 .region.active {
-  fill: #5E84FF;
+  fill: #bbb;
 }
 .bar rect {
   fill: steelblue;

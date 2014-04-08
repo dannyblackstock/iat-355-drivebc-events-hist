@@ -109,16 +109,15 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
               routeLinesTime = new Date(d["localupdatetime"]).getHours();
             }
             if (matchTime === routeLinesTime) {
-              console.log(matchTime + ", " + routeLinesTime);
               return true;
             }
             else {
               return false;
             }
-          }).style({'stroke': 'white', 'stroke-width': 3});
+          }).style({'stroke': 'blue', 'stroke-width': 3});
         })
         .on("mouseout", function() {
-          d3.selectAll("#routes line").style({'stroke': 'red', 'stroke-width': 1});
+          d3.selectAll("#routes line").style({'stroke': null, 'stroke-width': null});
         });
 
     bar.append("text")

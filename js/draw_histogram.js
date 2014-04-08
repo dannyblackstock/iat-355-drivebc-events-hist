@@ -55,6 +55,10 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
       }
     }
 
+    // update total number of items
+    d3.select("#total-value")
+      .html(values.length);
+
     // A formatter for counts.
     var formatCount = d3.format(",.0f");
 
@@ -188,7 +192,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
         multiSelect.selectAll("option").property('selected', true);
 
         cleanUp();
-              // console.log("You selected: " + this.value);
+        // console.log("You selected: " + this.value);
         draw_histogram($("#select-timescale").val(), this.value);
       } else if (id == "#select-timescale") {
         cleanUp();

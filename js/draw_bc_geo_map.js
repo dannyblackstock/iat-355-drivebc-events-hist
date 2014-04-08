@@ -113,6 +113,21 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
         d3.select("#tooltip").classed("hidden", true);
       });
     });
+
+    var severeCheckbox = d3.select("#show-severe-only")
+      .on("click", function(d) {
+        display = this.checked ? "none" : "block";
+        var routeLines = d3.selectAll("#routes line");
+        routeLines.filter(function(d) {
+          if (d["severity"]=="Major") {
+            console.log(d["severity"]);
+            return false;
+          }
+          else {
+            return true;
+          }
+        }).style("display", display);
+      });
 });
 
 function clicked(d) {

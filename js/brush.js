@@ -81,7 +81,7 @@ d3.chart.brush = function() {
     .style("stroke", "")
     .style("stroke-width", "")
 
-    rects.data(data, function(d) { return d.data.id })
+    rects.data(data, function(d) { return d["id"] })
     .style("stroke", "orange")
     .style("stroke-width", 3)
   }
@@ -105,13 +105,14 @@ d3.chart.brush = function() {
   return d3.rebind(chart, dispatch, "on");
 }
 
-d3.csv("drivebc_events_hist_2012_1000.csv", function(err, data) {
+d3.csv("drivebc_events_hist_2012.csv", function(err, data) {
 
-  var svg = d3.select("#brush").append("svg");
+  var svg = d3.select("#brush").append("svg")
+    .attr("height", 80);
 
   //brush
   var bgroup = svg.append("g")
-    .attr("transform", "translate(100, 430)")
+    .attr("transform", "translate(100, 0)")
   var brush = d3.chart.brush()
   brush
     .data(data)

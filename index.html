@@ -14,14 +14,14 @@
   <div id="map-svg"></div>
   <div id="histogram-canvas">
   </div>
-  <div>
+  <div id="controls">
     <label>Time scale: </label><select id="select-timescale"></select><br>
     <label>Filter by: <select id="select-category"></select></label><br>
     <label>Narrow the filter: </label><br>
     <select id="select-category-values" multiple size="8"></select>
-  </div>
-  <div id="total">
-    <p>Total: <span id="total-value"></span></p>
+    <div id="total">
+      Total: <span id="total-value"></span>
+    </div>
   </div>
   <!-- Move scripts so they run when document is loaded -->
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>

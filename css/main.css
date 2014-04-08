@@ -8,6 +8,11 @@ body {
 
 #map-svg {
   border: 1px solid #ccc;
+  float:left;
+}
+
+#histogram-canvas-svg {
+  float:left;
 }
 
 #routes {
@@ -53,9 +58,17 @@ body {
   cursor: pointer;
 }
 
+#controls {
+  float: left;
+}
+
+#total {
+  margin: 0px 0px 20px 0;
+}
 
 .bar text {
   fill: #fff;
+  text-shadow: 0 1px 1px;
 }
 
 .axis path, .axis line {

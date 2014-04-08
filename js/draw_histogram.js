@@ -1,4 +1,4 @@
-d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
+d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
   // id,cause,district,state,severity,localupdatetime,advisorymessage,isbidirectional,trafficpattern,head_latitude,head_longitude,tail_latitude,tail_longitude,route,type
   // var attributes = Object.keys(dataset[0]); // get column names from first row
 
@@ -151,17 +151,17 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
         case "Day of week":
           time = new Date(dataset[i]["localupdatetime"]).getDay();
           xRange = 7;
-          yRange = 80000;
+          yRange = 700;
           break;
         case "Monthly":
           time = new Date(dataset[i]["localupdatetime"]).getMonth();
           xRange = 12;
-          yRange = 40000;
+          yRange = 900;
           break;
         default: // "Time of day" as default
           time = new Date(dataset[i]["localupdatetime"]).getHours();
           xRange = 24;
-          yRange = 20000;
+          yRange = 450;
       }
       return time;
     }

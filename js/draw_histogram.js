@@ -13,7 +13,7 @@ d3.csv("drivebc_events_hist_2012.csv", function (error, dataset) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var timescaleOptions = ["Time of day", "Day of week", "Monthly"],
-      categoryOptions = ["All events", "type", "trafficpattern", "district"];
+      categoryOptions = ["All events", "type", "cause", "trafficpattern", "district"];
 
   selectField("#select-timescale", timescaleOptions);
   selectField("#select-category", categoryOptions);

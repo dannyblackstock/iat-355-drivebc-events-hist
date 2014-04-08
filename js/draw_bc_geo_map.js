@@ -16,8 +16,8 @@ var svg = d3.select("#map-svg").append("svg")
 
 var g = svg.append("g");
 
-// using first 100 rows for testing
-d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
+// using first 1000 rows for testing
+d3.csv("drivebc_events_hist_2012_1000.csv", function (data) {
 
   // load bc map GeoJSON file
   d3.json("bc_districts_danny_min.json", function(error, json) {
@@ -58,7 +58,7 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
     // append route lines div to the group so it can be scaled too
     g.append("g")
       .attr("id", "routes")
-      .classed("hidden", true)
+      // .classed("hidden", true)
       .selectAll("line")
       .data(data)
       .enter()
@@ -84,7 +84,8 @@ d3.csv("drivebc_events_hist_2012_100.csv", function (data) {
 
         var tooltipString = "<p><b>District:</b> " + d["district"] + "</p>" +
              "<p><b>Severity:</b> " + d["severity"] + "</p>"  +
-              "<p><b>Cause:</b> " + d["cause"] + "</p>";
+              "<p><b>Cause:</b> " + d["cause"] + "</p>" +
+              "<p><b>Date:</b> " + d["localupdatetime"] + "</p>";
 
         //Update the tooltip position and value
         d3.select("#tooltip")
@@ -123,8 +124,8 @@ function clicked(d) {
       .classed("active", centered && function(d) { return d === centered; });
 
       // show the routes when zoomed in (centered on a region)
-  g.select("#routes")
-    .classed("hidden", !centered);
+  // g.select("#routes")
+  //   .classed("hidden", !centered);
 
   g.transition()
       .duration(750)

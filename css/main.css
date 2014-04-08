@@ -36,6 +36,9 @@ body {
   cursor:pointer;
 }
 
+.region.active {
+  fill: #5E84FF;
+}
 .bar rect {
   fill: steelblue;
   shape-rendering: crispEdges;

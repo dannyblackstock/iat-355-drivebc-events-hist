@@ -56,7 +56,7 @@ body {
   shape-rendering: crispEdges;
 }
 .bar rect:hover {
-  fill: #888;
+  fill: #00b;
   cursor: pointer;
 }
 

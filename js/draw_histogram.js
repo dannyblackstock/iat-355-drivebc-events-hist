@@ -117,7 +117,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
             if (timescale === "Day of week") {
               routeLinesTime = new Date(d["localupdatetime"]).getDay();
             }
-            else if (timescale === "Monthly") {
+            else if (timescale === "Months of Year") {
               routeLinesTime = new Date(d["localupdatetime"]).getMonth();
             }
             else if (timescale === "Time of day") {
@@ -163,7 +163,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
           xRange = 7;
           yRange = 700;
           break;
-        case "Monthly":
+        case "Months of Year":
           time = new Date(dataset[i]["localupdatetime"]).getMonth();
           xRange = 12;
           yRange = 900;

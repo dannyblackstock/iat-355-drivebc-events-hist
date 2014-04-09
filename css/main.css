@@ -30,30 +30,31 @@ body {
 
 .route{
   stroke-width: 1px;
-  stroke: #0b0;
+  stroke: #C36BFF;
 }
 
 .route.major {
-  stroke: #f00;
+  stroke: #0AFD00;
+  stroke-width: 2px;
 }
 
 .route:hover {
-  stroke: #00f !important; /* ew */
+  stroke: #fff !important; /* ew */
 }
 
 .region {
-  fill: #ddd;
-  stroke: #444;
+  fill: #555;
+  stroke: #fff;
   transition: fill 0.2s ease;
 }
 
 .region:hover {
-  fill: #fff;
+  fill: #999;
   cursor:pointer;
 }
 
 .region.active {
-  fill: #bbb;
+  fill: #222;
 }
 .bar rect {
   fill: #333;
@@ -61,7 +62,7 @@ body {
   transition: fill .2s ease;
 }
 .bar rect:hover {
-  fill: #00b;
+  fill: #C36BFF;
   /*cursor: pointer;*/
 }
 #time-scale {
@@ -90,10 +91,9 @@ body {
 
 label[for=show-severe-only] {
   float:left;
-  background-color: #c00;
+  background-color: #0AFD00;
   padding: 4px;
   margin:0 0 5px 0;
-  color:white;
 }
 
 #tooltip {

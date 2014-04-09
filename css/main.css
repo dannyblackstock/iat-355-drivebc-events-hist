@@ -80,6 +80,12 @@ body {
   shape-rendering: crispEdges;
 }
 
+label[for=show-severe-only] {
+  float:left;
+  background-color: red;
+  color:white;
+}
+
 #tooltip {
   position: absolute;
   height: auto;

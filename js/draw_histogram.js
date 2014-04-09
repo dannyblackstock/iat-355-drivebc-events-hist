@@ -126,7 +126,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
 
           // select lines where time attribute matches
           //change stroke
-          var routeLines = d3.selectAll("#routes line").style("display", "none");
+          var routeLines = d3.selectAll("#routes line");//.style("display", "none");
           var timescale = $("#select-timescale").val();
           var matchTime = d[0];
 
@@ -141,14 +141,14 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
             else if (timescale === "Time of day") {
               routeLinesTime = new Date(d["localupdatetime"]).getHours();
             }
-            if (matchTime === routeLinesTime) {
+            if (matchTime !== routeLinesTime) {
               return true;
             }
             else {
               return false;
             }
           })
-          .style({'display': null, 'stroke': '#05f', 'opacity': 0.6});
+          .style('display', 'none');
         })
         .on("mouseout", function() {
           d3.selectAll("#routes line").style({'display': null, 'stroke': null, 'opacity': null});

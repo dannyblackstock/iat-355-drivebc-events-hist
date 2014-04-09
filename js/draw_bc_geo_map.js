@@ -2,6 +2,7 @@ var width = 700,
   height = 600,
   centered;
 
+// mercator type map projection
 var projection = d3.geo.mercator()
   .scale((width + 4050) / Math.PI)
   .translate([width + 3000, height + 1425])
@@ -16,10 +17,10 @@ var svg = d3.select("#map-svg").append("svg")
 
 var g = svg.append("g");
 
-// using first 1000 rows for testing
+// using random 4000 rows for testing
 d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
 
-  // load bc map GeoJSON file
+  // load somewhat minified bc map GeoJSON file
   d3.json("bc_districts_danny_min.json", function(error, json) {
     // console.log(json);
 
@@ -85,6 +86,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
       .attr("localupdatetime", function(d) {
         return d["localupdatetime"];
       })
+      // show tooltip
       .on("mousemove", function(d) {
         //Get this bar's x/y values, then augment for the tooltip
         var xPosition = d3.event.pageX;
@@ -114,6 +116,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
       });
     });
 
+    // checkbox to show or hide only major severity incidents
     var severeCheckbox = d3.select("#show-severe-only")
       .on("click", function(d) {
         display = this.checked ? "none" : "block";
@@ -130,6 +133,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
       });
 });
 
+// function for zooming into selected regions
 function clicked(d) {
   var x, y, k;
 
@@ -149,7 +153,7 @@ function clicked(d) {
   g.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
 
-      // show the routes when zoomed in (centered on a region)
+  // show the routes when zoomed in (centered on a region)
   // g.select("#routes")
   //   .classed("hidden", !centered);
 

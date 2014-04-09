@@ -3,15 +3,12 @@
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <!-- Google Maps is using Danny's API key. -->
-  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0naflfoGrRdLeyRnCeKQiZODwMkrDAwQ&sensor=false"></script>-->
-
 </head>
 <body>
   <div id="tooltip" class="hidden">
     <p><span id="tooltip-value"></span></p>
   </div>
-  <label for="show-severe-only">Show severe only
+  <label for="show-severe-only">Show major incidents only
     <input id="show-severe-only" type="checkbox">
   </label>
   <div id="map-svg">
@@ -29,7 +26,7 @@
     <label>Narrow the filter: </label><br>
     <select id="select-category-values" multiple size="8"></select>
   </div>
-  <!-- Move scripts so they run when document is loaded -->
+  <!-- scripts at end of <body> so they run after document is loaded -->
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <!-- // <script type="text/javascript" src="js/ui.js"></script> -->
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>

@@ -23,6 +23,18 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     // console.log($(this).val()); // Returns an array of selected options
   });
 
+  d3.select("#button-yscale").on("click", function() {
+    if ($(this).val() == "Rescale to maximum value") {
+      cleanUp();
+      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("select-category-values").val());
+      $(this).val("Reset scale to default");
+    } else {
+      cleanUp();
+      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("select-category-values").val());
+      $(this).val("Rescale to maximum value");
+    }
+  });
+
   draw_histogram("Time of day", "All events");
 
   function draw_histogram(timescale, category, narrowCat) {
@@ -72,6 +84,14 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     var data = d3.layout.histogram()
         .bins(x.ticks(xRange))
         (values);
+
+    if ($("#button-yscale").val() == "Rescale to maximum value") {
+      yRange = d3.max(data, function(d) { return d.y; });
+      console.log(yRange);
+    } else {
+      setTimescale(0, timescale); // quick and dirty way to set yRange
+      console.log(yRange);
+    }
 
     var y = d3.scale.linear()
         .domain([0, yRange])// d3.max(data, function(d) { return d.y; })])

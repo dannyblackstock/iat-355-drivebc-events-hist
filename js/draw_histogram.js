@@ -72,7 +72,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
 
     // Generate a histogram using twenty uniformly-spaced bins.
     var data = d3.layout.histogram()
-        .bins(x.ticks(24))
+        .bins(x.ticks(xRange))
         (values);
 
     var y = d3.scale.linear()

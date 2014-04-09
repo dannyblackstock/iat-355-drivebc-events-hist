@@ -1,7 +1,4 @@
 d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
-  // id,cause,district,state,severity,localupdatetime,advisorymessage,isbidirectional,trafficpattern,head_latitude,head_longitude,tail_latitude,tail_longitude,route,type
-  // var attributes = Object.keys(dataset[0]); // get column names from first row
-
   var margin = {top: 10, right: 30, bottom: 30, left: 50},
       width = 600 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
@@ -12,34 +9,35 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  // Arrays hardcoded for determining which time periods & dimensions to use
   var timescaleOptions = ["Time of day", "Day of week", "Monthly"],
       categoryOptions = ["All events", "type", "cause", "trafficpattern", "district"];
 
   selectField("#select-timescale", timescaleOptions);
   selectField("#select-category", categoryOptions);
+
+  // Update histogram based on the selected values in Multi-select input
   d3.select("#select-category-values").on("change", function() {
     cleanUp();
     draw_histogram($("#select-timescale").val(), $("#select-category").val(), $(this).val());
-    // console.log($(this).val());
+    // console.log($(this).val()); // Returns an array of selected options
   });
 
   draw_histogram("Time of day", "All events");
 
-
   function draw_histogram(timescale, category, narrowCat) {
-    // http://bl.ocks.org/mbostock/3048450
-    var values = []; // values to be put into bins
-    var xRange, yRange;
+    // Source: http://bl.ocks.org/mbostock/3048450
+    var values = []; // pre-processed values to be put into bins
+    var xRange, yRange; // range values for x and y scales
 
-    // console.log(category);
     // Adds only what is in the category to the data.
     switch (category) {
-      case "All events":
+      case "All events": // push all records into values array
         for (var i = 0; i < dataset.length; i++) {
           values.push(setTimescale(i, timescale));
         }
         break;
-      default:
+      default: // push only whatever is in the category to the values array
         var options = getUnique(category);
         for (var i = 0; i < dataset.length; i++) {
           if ($.inArray(dataset[i][category], options)) {
@@ -48,11 +46,11 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         }
     }
 
-    if (narrowCat) { // a particular narrowed filter is selected
+    if (narrowCat) { // an array of selected options
       values = [];
       for (var i = 0; i < dataset.length; i++) {
         for (var j = 0; j < narrowCat.length; j++) {
-          if (dataset[i][category] == narrowCat[j]) {//(!$.inArray(dataset[i][category], narrowCat[j])) {
+          if (dataset[i][category] == narrowCat[j]) { //(!$.inArray(dataset[i][category], narrowCat[j])) { // Loop through narrowCat to add every record with specific dimension value
             values.push(setTimescale(i, timescale));
           }
         }
@@ -70,7 +68,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         .domain([0, xRange])
         .range([0, width]);
 
-    // Generate a histogram using twenty uniformly-spaced bins.
+    // Generate a histogram using uniformly-spaced bins.
     var data = d3.layout.histogram()
         .bins(x.ticks(xRange))
         (values);
@@ -145,6 +143,8 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         .attr("transform", "translate(0, 0)")
         .call(yAxis);
 
+    // Function returns time as a formatted string according to whichever timescale is selected
+    // Example: "01/01/2012 12:29" -> Date object .getHour() -> "12"
     function setTimescale (i, timescale) {
       var time;
       switch (timescale) {
@@ -167,6 +167,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     }
   }
 
+  // Reusable function that populates a dropdown menu with specified options
   function selectField (id, options) {
     var select = d3.select(id);
 
@@ -183,9 +184,12 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         }
       });
 
-    // determines field to update the histogram
+    // determines field to update the histogram -- kinda hardcoded
     select.on("change", function() {
       if (id == "#select-category") {
+        // console.log("You selected: " + this.value);
+
+        // multiSelect -- functionality that populates the Multi-select input every time the main category filter is changed
         var multiSelect = d3.select("#select-category-values");
 
         multiSelect.selectAll("option").remove();
@@ -193,24 +197,26 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
             .data(getUnique(this.value))
           .enter().append("option")
             .text(String);
-        multiSelect.selectAll("option").property('selected', true);
+        multiSelect.selectAll("option").property('selected', true); // Select all filters by default
 
-        cleanUp();
-        // console.log("You selected: " + this.value);
-        draw_histogram($("#select-timescale").val(), this.value);
+        cleanUp(); // clear drawing for redraw
+        draw_histogram($("#select-timescale").val(), this.value); // draw histogram with this newly selected category
       } else if (id == "#select-timescale") {
         cleanUp();
-        draw_histogram(this.value, $("#select-category").val());
+        draw_histogram(this.value, $("#select-category").val());  // draw histogram with this newly selected timescale
       }
     });
   }
 
-  function getUnique(attribute) { // filtering specific values of a categorical attribute
+  // Reusable function that returns an array of all unique values in a particular array (or all of one dimension's values in this context)
+  // Example: ["A", "A", "B", "C"] -> ["A", "B", "C"]
+  function getUnique(array) {
     var uniques = [];
 
     for (var i = 0; i < dataset.length; i++) {
-      uniques.push(dataset[i][attribute]);
+      uniques.push(dataset[i][array]);
     }
+
     uniques = uniques.filter(function(elem, pos, self) { // http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
       return self.indexOf(elem) == pos;
     });
@@ -218,7 +224,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     return uniques.sort(); // get unique attribute values (for filters)
   }
 
-
+  // Function that clears these svg elements in order to prep for another redraw
   function cleanUp() {
     svg.selectAll(".bar").remove();
     svg.selectAll(".x.axis").remove();

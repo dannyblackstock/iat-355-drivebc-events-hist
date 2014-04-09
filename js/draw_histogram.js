@@ -9,8 +9,17 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  //add y axis label
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -53)
+    .attr("x", 0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Number of Incidents");
+
   // Arrays hardcoded for determining which time periods & dimensions to use
-  var timescaleOptions = ["Time of day", "Day of week", "Monthly"],
+  var timescaleOptions = ["Time of day", "Day of week", "Months of Year"],
       categoryOptions = ["All events", "type", "cause", "trafficpattern", "district"];
 
   selectField("#select-timescale", timescaleOptions);
@@ -99,7 +108,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
 
           // select lines where time attribute matches
           //change stroke
-          var routeLines = d3.selectAll("#routes line");
+          var routeLines = d3.selectAll("#routes line").style("display", "none");
           var timescale = $("#select-timescale").val();
           var matchTime = d[0];
 
@@ -120,10 +129,11 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
             else {
               return false;
             }
-          }).style({'stroke': 'blue', 'stroke-width': 2, 'opacity': 0.4});
+          })
+          .style({'display': null, 'stroke': 'blue', 'opacity': 0.4});
         })
         .on("mouseout", function() {
-          d3.selectAll("#routes line").style({'stroke': null, 'stroke-width': null, 'opacity': null});
+          d3.selectAll("#routes line").style({'display': null, 'stroke': null, 'opacity': null});
         });
 
     bar.append("text")

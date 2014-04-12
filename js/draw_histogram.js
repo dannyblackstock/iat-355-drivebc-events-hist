@@ -50,14 +50,14 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
   });
 
   d3.select("#button-yscale").on("click", function() {
-    if ($(this).val() == "Rescale to maximum value") {
-      $(this).val("Reset scale to default");
+    if ($(this).val() == "Switch to relative scale") {
+      $(this).val("Switch to default scale");
       cleanUp();
-      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("select-category-values").val());
+      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("#select-category-values").val());
     } else {
-      $(this).val("Rescale to maximum value");
+      $(this).val("Switch to relative scale");
       cleanUp();
-      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("select-category-values").val());
+      draw_histogram($("#select-timescale").val(), $("#select-category").val(), $("#select-category-values").val());
     }
   });
 
@@ -111,7 +111,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         .bins(x.ticks(xRange))
         (values);
 
-    if ($("#button-yscale").val() == "Rescale to maximum value") {
+    if ($("#button-yscale").val() == "Switch to relative scale") {
       setTimescale(0, timescale); // quick and dirty way to set yRange
     } else {
       yRange = d3.max(data, function(d) { return d.y; });
@@ -246,10 +246,10 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
         multiSelect.selectAll("option").property('selected', true); // Select all filters by default
 
         cleanUp(); // clear drawing for redraw
-        draw_histogram($("#select-timescale").val(), this.value); // draw histogram with this newly selected category
+        draw_histogram($("#select-timescale").val(), this.value, $("#select-category-values").val()); // draw histogram with this newly selected category
       } else if (id == "#select-timescale") {
         cleanUp();
-        draw_histogram(this.value, $("#select-category").val());  // draw histogram with this newly selected timescale
+        draw_histogram(this.value, $("#select-category").val(), $("#select-category-values").val());  // draw histogram with this newly selected timescale
       }
     });
   }

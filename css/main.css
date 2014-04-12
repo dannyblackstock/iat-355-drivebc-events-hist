@@ -13,11 +13,14 @@ body {
   border: 1px solid #ccc;
   float:left;
   clear: both;
-  margin: 0 20px 0 0;
 }
 
-#histogram-canvas-svg {
-  float:left;
+#histogram-container {
+  float: left;
+  height: 593px;
+  border: 1px solid #ccc;
+  margin: 0 0 0 10px;
+  padding: 10px 0 0 10px;
 }
 
 #routes {
@@ -73,15 +76,31 @@ body {
   fill: rgba(220, 155, 80, 1);
   /*cursor: pointer;*/
 }
+
 #time-scale {
-  text-align: center; display: block;
+  text-align: center;
+  display: block;
 }
-#controls {
+
+#controls-outer {
   float: left;
+  width: 100%;
+  text-align: center;
+}
+
+#controls-inner {
+  width: 500px;
+  margin: 10px auto;
 }
 
 #total {
-  /*margin: 0px 0px 20px 0;*/
+  margin: 0px 0px 10px 0;
+  text-align: center;
+}
+
+#filter-type {
+  display: block;
+  margin: 10px 0 -15px 0;
 }
 
 .bar text {
@@ -97,11 +116,19 @@ body {
 }
 
 label[for=show-severe-only] {
-  float:left;
-  background-color: rgba(0,0,180, 1);
+  background-color: rgba(0,0,180, 0.75);
   padding: 4px;
-  margin:0 0 5px 0;
   color: #fff;
+  position: absolute;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+label[for=show-severe-only]:hover {
+  background-color: rgba(0,0,180, 1);
+}
+
+#select-category-values {
+  min-width: 350px;
 }
 
 #tooltip {

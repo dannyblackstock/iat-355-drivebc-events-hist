@@ -8,24 +8,27 @@
   <div id="tooltip" class="hidden">
     <p><span id="tooltip-value"></span></p>
   </div>
-  <label for="show-severe-only">Show major incidents only
-    <input id="show-severe-only" type="checkbox">
-  </label>
   <div id="map-svg">
+    <label for="show-severe-only">Show major incidents only
+      <input id="show-severe-only" type="checkbox">
+    </label>
   </div>
-  <div id="histogram-canvas">
+  <div id="histogram-container">
+    <label>Y axis: <input id="button-yscale" type="button" value="Switch to relative scale"></label>
+    <div id="histogram-canvas"></div>
+    <label id="time-scale">Time scale (x-axis): <select id="select-timescale"></select></label><br>
   </div>
-  <label id="time-scale">Time scale (x-axis): <select id="select-timescale"></select></label><br>
 
-  <div id="controls">
-    <label><input id="button-yscale" type="button" value="Rescale to maximum value"></label>
-    <div id="total">
-      Total incidents: <span id="total-value"></span>
+  <div id="controls-outer">
+    <div id="controls-inner">
+      <div id="total">
+        Total incidents being displayed: <span id="total-value"></span>
+      </div>
+      <label id="filter-type">Filter by: <select id="select-category"></select></label><br>
+      <select id="select-category-values" multiple size="8"></select>
     </div>
-    <label>Filter by: <select id="select-category"></select></label><br>
-    <label>Narrow the filter: </label><br>
-    <select id="select-category-values" multiple size="8"></select>
   </div>
+
   <!-- scripts at end of <body> so they run after document is loaded -->
   <script src="js/jquery-1.11.0.js"></script>
   <!-- // <script type="text/javascript" src="js/ui.js"></script> -->

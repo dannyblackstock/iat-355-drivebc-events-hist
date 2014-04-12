@@ -26,8 +26,25 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
   selectField("#select-category", categoryOptions);
 
   // Update histogram based on the selected values in Multi-select input
-  d3.select("#select-category-values").on("change", function() {
+  d3.select("#select-category-values").on("change", function(d) {
     cleanUp();
+    var selectedFilters = $(this).val();
+
+    // filter the map as well, first show all the paths
+    var routeLines = d3.selectAll("#routes line").style('display', 'block');
+    var key = $("#select-category").val();
+
+    routeLines.filter(function(d) {
+      // if the line is not in the selected options (and therefore equal to -1)
+      if ($.inArray(d[key], selectedFilters) === -1) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    // then hide it
+    }).style('display', 'none');
+
     draw_histogram($("#select-timescale").val(), $("#select-category").val(), $(this).val());
     // console.log($(this).val()); // Returns an array of selected options
   });
@@ -126,7 +143,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
 
           // select lines where time attribute matches
           //change stroke
-          var routeLines = d3.selectAll("#routes line");//.style("display", "none");
+          var routeLines = d3.selectAll("#routes line");
           var timescale = $("#select-timescale").val();
           var matchTime = d[0];
 
@@ -148,10 +165,10 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
               return false;
             }
           })
-          .style('display', 'none');
+          .style('opacity', 0);
         })
         .on("mouseout", function() {
-          d3.selectAll("#routes line").style({'display': null, 'stroke': null, 'opacity': null});
+          d3.selectAll("#routes line").style({'opacity': null, 'stroke': null, 'opacity': null});
         });
 
     bar.append("text")
@@ -216,7 +233,8 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     select.on("change", function() {
       if (id == "#select-category") {
         // console.log("You selected: " + this.value);
-
+        //first show all the paths
+        var routeLines = d3.selectAll("#routes line").style('display', 'block');
         // multiSelect -- functionality that populates the Multi-select input every time the main category filter is changed
         var multiSelect = d3.select("#select-category-values");
 

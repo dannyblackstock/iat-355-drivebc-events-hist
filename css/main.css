@@ -151,6 +151,7 @@ label[for=show-severe-only]:hover {
   pointer-events: none;
   opacity:1;
   transition: opacity 0.3s ease;
+  z-index: 999;
 }
 
 #tooltip:after {

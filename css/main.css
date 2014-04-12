@@ -22,6 +22,7 @@ body {
   border: 1px solid #ccc;
   float:left;
   background-color: #fff;
+  position: relative;
 }
 
 #histogram-container {
@@ -127,6 +128,7 @@ label[for=show-severe-only] {
   padding: 4px;
   color: #fff;
   position: absolute;
+  bottom: 0;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }

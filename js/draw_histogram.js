@@ -85,11 +85,13 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
     }
 
     if (narrowCat) { // an array of selected options
-      values = [];
-      for (var i = 0; i < dataset.length; i++) {
-        for (var j = 0; j < narrowCat.length; j++) {
-          if (dataset[i][category] == narrowCat[j]) { //(!$.inArray(dataset[i][category], narrowCat[j])) { // Loop through narrowCat to add every record with specific dimension value
-            values.push(setTimescale(i, timescale));
+      if (narrowCat[0] != "undefined") {
+        values = [];
+        for (var i = 0; i < dataset.length; i++) {
+          for (var j = 0; j < narrowCat.length; j++) {
+            if (dataset[i][category] == narrowCat[j]) { //(!$.inArray(dataset[i][category], narrowCat[j])) { // Loop through narrowCat to add every record with specific dimension value
+              values.push(setTimescale(i, timescale));
+            }
           }
         }
       }

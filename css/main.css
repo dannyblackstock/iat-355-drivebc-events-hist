@@ -42,13 +42,11 @@ body {
 .route {
   stroke-width: 1px;
   stroke: rgba(220, 155, 80, 0.75);
-  z-index: -999;
 }
 
 .route.major {
   stroke: rgba(20,20,180, 0.75);
   stroke-width: 2px;
-  z-index: 999;
 }
 
 .route:hover {
@@ -151,7 +149,6 @@ label[for=show-severe-only]:hover {
   pointer-events: none;
   opacity:1;
   transition: opacity 0.3s ease;
-  z-index: 999;
 }
 
 #tooltip:after {

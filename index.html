@@ -6,9 +6,6 @@
 </head>
 <body>
   <div id="container">
-    <div id="tooltip" class="hidden">
-      <p><span id="tooltip-value"></span></p>
-    </div>
     <div class="svg" id="map-svg">
       <label for="show-severe-only">Show major incidents only
         <input id="show-severe-only" type="checkbox">
@@ -29,6 +26,9 @@
         <select id="select-category-values" multiple size="8"></select>
       </div>
     </div>
+  </div>
+  <div id="tooltip" class="hidden">
+    <p><span id="tooltip-value"></span></p>
   </div>
   <!-- scripts at end of <body> so they run after document is loaded -->
   <script src="js/jquery-1.11.0.js"></script>

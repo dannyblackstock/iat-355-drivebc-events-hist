@@ -5,22 +5,29 @@ html {
 }
 
 body {
-  height: 100%; margin: 0; padding: 20px; font: 14px sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 20px;
+  font: 14px sans-serif;
   font-family: 'Open Sans', sans-serif;
+  background-color: #eee;
 }
 
-#map-svg {
+#container {
+  width: 1330px;
+  margin: 0 auto;
+}
+
+.svg {
   border: 1px solid #ccc;
   float:left;
-  clear: both;
+  background-color: #fff;
 }
 
 #histogram-container {
-  float: left;
-  height: 593px;
-  border: 1px solid #ccc;
   margin: 0 0 0 10px;
   padding: 10px 0 0 10px;
+  height: 594px;
 }
 
 #routes {

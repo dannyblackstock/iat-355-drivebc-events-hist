@@ -119,7 +119,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
     // checkbox to show or hide only major severity incidents
     var severeCheckbox = d3.select("#show-severe-only")
       .on("click", function(d) {
-        display = this.checked ? "none" : "block";
+        opacity = this.checked ? 0 : 1;
         var routeLines = d3.selectAll("#routes line");
         routeLines.filter(function(d) {
           if (d["severity"]=="Major") {
@@ -129,7 +129,7 @@ d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
           else {
             return true;
           }
-        }).style("display", display);
+        }).style("opacity", opacity);
       });
 });
 

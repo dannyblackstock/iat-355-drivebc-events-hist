@@ -1,4 +1,4 @@
-d3.csv("drivebc_events_hist_2012_4000.csv", function (error, dataset) {
+d3.csv("data/drivebc_events_hist_2012_4000.csv", function (error, dataset) {
   var margin = {top: 10, right: 30, bottom: 30, left: 50},
       width = 600 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;

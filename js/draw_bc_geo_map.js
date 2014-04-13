@@ -18,10 +18,10 @@ var svg = d3.select("#map-svg").append("svg")
 var g = svg.append("g");
 
 // using random 4000 rows for testing
-d3.csv("drivebc_events_hist_2012_4000.csv", function (data) {
+d3.csv("data/drivebc_events_hist_2012_4000.csv", function (data) {
 
   // load somewhat minified bc map GeoJSON file
-  d3.json("bc_districts_danny_min.json", function(error, json) {
+  d3.json("data/bc_districts_danny_min.json", function(error, json) {
     // console.log(json);
 
     // create a path for each feature
